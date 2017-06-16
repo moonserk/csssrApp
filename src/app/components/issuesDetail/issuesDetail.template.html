@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="panel">
+  <div class="list-group list-group-item" role="group">
+       <h4 class="list-group-item-heading">{{$ctrl.issue.number}}
+           <a href="{{$ctrl.issue.user.html_url}}" class="list-group-item-text pull-right">{{$ctrl.issue.user.login}}</a>
+
+       </h4>
+        <p class="list-group-item-text">
+          <img class="pull-right" width="80" height="80" ng-src="{{$ctrl.issue.user.avatar_url}}" alt="{{$ctrl.issue.user.login}}">
+          Title: {{$ctrl.issue.title}}</p>
+        <p class="list-group-item-text">Created at:{{$ctrl.issue.created_at}}</p>
+        <p class="list-group-item-text">Updated at:{{$ctrl.issue.updated_at}}</p>
+        <p class="list-group-item-text">State: {{$ctrl.issue.state}}</p>
+        <p class="list-group-item-text">Link: <a href="{{$ctrl.issue.html_url}}">{{$ctrl.issue.html_url}}</a></p>
+        <!-- <p class="list-group-item-text" ng-repeat="comment in $ctrl.comments">State: {{comment.body}}</p> -->
+  </div>
+</div>
+</div>

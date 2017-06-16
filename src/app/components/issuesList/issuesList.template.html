@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="panel panel-default">
+    <div class="panel-heading">Enter name and repo</div>
+    <div class="panel-body">
+
+      <label for="basic-url">Name</label><label  ng-hide="$ctrl.repos === null" for="basic-url" class="pull-right">Available repos</label>
+      <div class="input-group">
+        <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" ng-model="user">
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="button" ng-click="$ctrl.getRepos(user)">Search repos </button>
+        </span>
+        <div>
+        <select ng-hide="$ctrl.repos === null" class="form-control" id="basic-url" aria-describedby="basic-addon3" ng-model="repos" ng-change="$ctrl.getIssues(user, repos)">
+        <!-- <datalist id="repos" > -->
+            <option ng-repeat="repo in $ctrl.repos" >{{repo.name}}</option>
+        <!-- </datalist>--></select>
+      </div>
+      </div>
+
+      <label for="basic-url">Repo</label>
+      <div class="input-group">
+        <input type="text" list="repos" class="form-control" id="basic-url" aria-describedby="basic-addon3" ng-model="repos">
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="button" ng-click="$ctrl.getIssues(user, repos)">Search issues</button>
+        </span>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="btn-group panel" role="group" ng-hide="$ctrl.issues === null">
+    <button type="button" class="btn btn-default" ng-repeat="per in $ctrl.perPage2"ng-click="$ctrl.setPerPage(per)">{{per}}</button>
+    <!-- <button type="button" class="btn btn-default" ng-click="$ctrl.setPerPage(30)">20</button>
+    <button type="button" class="btn btn-default" ng-click="$ctrl.setPerPage(1000)">30</button> -->
+  </div>
+
+  <div class="list-group" role="group" aria-label="" ng-repeat="issue in $ctrl.issues">
+      <a href="#/issues/{{issue.number}}" class="list-group-item">
+        <h4 class="list-group-item-heading">{{issue.number}}<em href="{{$ctrl.issue.user.html_url}}"class="pull-right">{{issue.user.login}}</em></h4>
+        <p class="list-group-item-text">{{issue.title}}</p>
+        <p class="list-group-item-text">{{issue.created_at}}</p>
+      </a>
+  </div>
+
+  <div class="panel" ng-hide="$ctrl.issues === null">
+    <button type="button" class="btn btn-default" ng-click="$ctrl.prevoiusPage()">previous</button>
+    <button type="button" class="btn btn-default  pull-right" ng-click="$ctrl.nextPage()">next</button>
+  </div>
